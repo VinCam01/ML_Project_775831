@@ -36,7 +36,7 @@ Sequently, we focus our attention on the variables, making them suitable for the
 </p>
 
 In *Figure 2* is showed an example on how change the distibution of the variables '*Iva*' and '*Tdoc*' after that operation. We chosen a thresold of 1,200 occurrences for the first and 1,000 for the second.
-Very interesting was also the case of the '*Ateco*' column: there were 386 classess extremely unbalanced.
+Very interesting was also the case of the '*Ateco*' column: there were 386 classes extremely unbalanced and the visualization was horrible.
 
 <div align="center">
   <img src="images/ateco.png" alt="">
@@ -46,7 +46,16 @@ Very interesting was also the case of the '*Ateco*' column: there were 386 class
   <em><small>Figure 3</small></em>
 </p>
 
+As we can see in *Figure 3*, here it has been done a more sophisticated job: before the union of the less frequent classes, we grouped the '*Ateco*' code according to the first two digits. In fact, conducting a search, we discovered that they represent the macrocategory of the commercial activities.
+Lastly, we decided to maintain the same approach also for our response variable, '*IvaM*'.
 
+<div align="center">
+  <img src="images/ivam.png" alt="">
+</div>
+
+<p align="right">
+  <em><small>Figure 3</small></em>
+</p>
 
 
 
