@@ -128,6 +128,20 @@ Then we perforder a KNN model.
 - 'leaf_size': 21 -> determines the maximum leaf size during tree construction. Is important to notice that in this case, this hyperparameter is superfluous; infact it is specific to tree-based algorithms like ball_tree or kd_tree.
 
 #### 2.2.6 - Artificial Neural Network
+Lastly, we implemented an ANN.
+
+**Key Points**:
+- Artificial Neural Networks consist of interconnected nodes (neurons) organized in layers: input layer, hidden layers, and output layer.
+- Information is processed through the network by propagating forward from input to output layers.
+- Neurons in each layer apply an activation function to the weighted sum of inputs to produce output.
+- ANNs are powerful for complex pattern recognition and non-linear relationships in data.
+- Training involves adjusting weights and biases through backpropagation using optimization algorithms like gradient descent.
+
+**Parameters**:
+- EPOCHS = 50 -> number of times the entire dataset is passed forward and backward through the neural network during training. 
+- BATCH_SIZE = 128 -> number of samples processed before the model's parameters are updated. 
+- NB_CLASSES = 26 -> number of classes in the classification task.
+- N_SPLITS = 5 -> number of folds for cross-validation.
 
 
 ## 3 - Experimental Design
