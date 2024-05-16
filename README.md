@@ -62,7 +62,73 @@ Without this procedure it would have been very difficult for the model to predic
 Once the classes were balanced, we proceeded implementing binary encoding and one-hot-encoding for the categorical variables. Then, since after encoding the number of columns increased, we implemented the Cramer's method in order to eliminate or put in the class 'OTHER', all those variables that have a Cramer's coefficient less than 0.25; indicating a low correlation with the response variable. The Cramer's method is a statistical technique employed to assess the correlation between two categorical variables represented in a contingency table. It entails calculating the chi-square statistic for the table and normalising it to account for table size. The resulting value, known as Cramer's coefficient, ranges from 0 to 1, with higher values indicating a stronger association. It is used to quantify the degree of relationship between categorical variables.
 
 ### 2.2 - Models 
-In this section we will explore the different 
+In this section we will explore all the statistical and machine learning models that we implemented. For every model has been done a k-fold cross-validation with k equal to five. Additionally, where possible has been used the Optuna hyperparameter tuning to discover the best parameters. We choose this optimizator because is computationally less expensive then Grid Search, and performs better compared to the Random Search; in fact Optuna employs Bayesian optimisation to efficiently explore the hyper-parameter space, focusing on hyper-parameter sets that demonstrate optimal performance during the search process and incorporating historical performance data.
+
+#### 2.2.1 - Logistic Regression
+The first model used is a Logistic Regression.
+
+**Key Points**:
+- Used to model the relationship between a binary dependent variable and one or more independent variables.
+- Estimates the probability of occurrence of the event of interest.
+- Produces coefficients indicating the effect of independent variables on the probability of success.
+
+As we will see in next sections, despite being the 'simplest' of the models used, the metrics are still very high
+
+#### 2.2.2 - Random Forest
+Secondly we implemented a Random Forest.
+
+**Key Points**:
+- Ensemble learning method used for classification tasks.
+- Builds multiple decision trees during training and outputs the class that is the mode of the classes of the individual trees.
+- Each tree is trained on a random subset of the training data and features, promoting diversity among the trees.
+- Handles non-linear relationships well and is robust to overfitting.
+
+**Hyperparameters**:
+- n_estimators: 117 -> number of trees in the forest.
+- 'max_depth': 27 -> maximum depth of each tree. 
+- 'min_samples_split': 3 -> minimum number of samples required to split an internal node.
+- 'min_samples_leaf': 1 -> minimum number of samples required in a leaf.
+
+#### 2.2.3 - Decision Tree
+Then we used a Decision Tree. 
+
+**Key Points**:
+- It represents a tree-like structure where each internal node represents a feature, each branch represents a decision rule, and each leaf node represents an outcome.
+- The model makes predictions by traversing the tree from the root node to a leaf node based on the features of the input data.
+- Unlike Random Forest, the decision tree model is a single tree structure.
+
+**Hyperparameters**:
+- 'max_depth': 42 -> maximum depth of the decision tree.
+- 'min_samples_split': 2 -> minimum number of samples required to split an internal node.
+- 'min_samples_leaf': 1 -> minimum number of samples required to be at a leaf node
+- 'criterion': entropy -> specifies the function used to measure the quality of a split. 'Entropy' measures the impurity of a split, aiming to maximize information gain.
+
+#### 2.2.4 - Support Vector Machine
+Proceed our exploration implementing a Support Vector Machine.
+
+**Key Points**:
+- Finds the hyperplane that best separates classes in the feature space.
+- Maximizes margin between classes' nearest data points (support vectors).
+- Effective in high-dimensional spaces and robust to overfitting.
+
+The implementation of this model took a long time, so carrying out hyperparameters tuning would have been computationally extremely time-consuming and inefficient since, as we shall see in the results section, the metrics are very good anyway.
+
+#### 2.2.5 - K-Nearest Neighbors
+Then we perforder a KNN model.
+
+**Key Points**:
+- It classifies data points based on the majority class of their nearest neighbors.
+- The "K" in KNN represents the number of neighbors to consider when making predictions.
+- It is non-parametric and instance-based, meaning it does not make assumptions about the underlying data distribution.
+
+**Hyperparameters**:
+- 'n_neighbors': 14 -> number of neighbors considered during classification
+- 'weights': 'distance' -> specifies how neighbors are weighted during prediction. Option 'distance', means that closer neighbors have more influence on the prediction.
+- 'algorithm': 'auto' -> specifies the algorithm used to compute nearest neighbors. The option 'Auto' automatically selects the most suitable algorithm based on the data size and nature.
+- 'leaf_size': 21 -> determines the maximum leaf size during tree construction. Is important to notice that in this case, this hyperparameter is superfluous; infact it is specific to tree-based algorithms like ball_tree or kd_tree.
+
+#### 2.2.6 - Artificial Neural Network
+
 
 ## 3 - Experimental Design
 
