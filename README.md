@@ -14,3 +14,11 @@ The company provides us with a substantial dataset, comprising approximately 130
 
 #### Data Cleaning
 The first step of our work has been the visualization of missing value:
+<div align="center">
+  <img src="images/nan.png" alt="">
+</div>
+
+<p align="center">
+  <em>Figure 1</em>
+</p>
+
