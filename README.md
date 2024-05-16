@@ -64,6 +64,11 @@ Once the classes were balanced, we proceeded implementing binary encoding and on
 ### 2.2 - Models 
 In this section we will explore the different 
 
+## 3 - Experimental Design
+
+## 4 - Results
+
+## 5 - Conclusions
 
 
 
