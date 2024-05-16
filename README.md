@@ -147,8 +147,89 @@ Lastly, we implemented an ANN.
 ## 3 - Experimental Design
 
 ## 4 - Results
+#### Random Forest Results
+We have introduced the Random Forest model, that is a powerful ensemble learning method in handling complex classification tasks and providing accurate predictions. <br>
+Considering the evaluation metrics and all the previous findings, we can estimate that the average accuracy is 96.6 % and the F1 score is 97% for IvaM exemptions codes prediction in the Random Forest model: <br>
+
+- **Mean Accuracy**: 0.966267564652884
+- **F1 Score**: 0.965914939103063
+
+To reinforce these fulfilling parameters, we set a stacked bar chart that shows the right and the wrong predictions of the IvaM exemption codes for the Random Forest model.
+
+<div align="center">
+  <img src="images/iva_tdoc.png" alt="">
+</div>
+
+<p align="right">
+  <em><small>Figure </small></em>
+</p>
+ 
+As we can see, all the IvaM exemption codes are correctly predicted by our model, except for the value 314.0 which shows a notable number of incorrect predictions. Thus, Random Forest model has demonstrated remarkable accuracy and robustness, making it a reliable tool for identifying and classifying exemption codes with high precision.
+
+#### Decision Tree Results
+The Decision Tree model has showcased remarkable performance, registering notable accuracy and F1 scores values:
+
+- **Mean accuracy**: 0.9621097881510089
+- **F1 Score**: 0.9620105397238538
+
+This indicates its proficiency in accurately classifying instances and effectively balancing precision and recall.
+
+
+#### Support Vector Machine(SVM) Results
+SVMs operate by finding the optimal hyperplane that best separates different classes in the feature space, maximizing the margin between them. The Support Vector Machine model demonstrates us a slight degrowth over previously tested models, achieving consistent accuracy levels.
+
+ **Mean accuracy**: 0.9512115074882012
+- **F1 Score**: 0.9503272225910833
+
+This suggests a marginal but notable deterioration in the model's learning capability. <br>
+For this model, we had to stop hyperparameters tuning process because we have noticed it was extremely computationally expensive, so we decided to don't perform it since the metres were already good.
+
+#### K-Nearest Neighbours Results(KNN)
+We have implemented a KNN model with the goal of exploiting the similarities between the exemption codes to make more accurate predictions. Considering the KNN results, there was an ascent regarding our parameters, going to confirm the significance and validity of the model.
+
+Mean Accuracy:  0.9636251020735521
+F1 Score: 0.9633274178052911
+
+#### Artificial Neural Network(ANN) Results
+Lastly, we have introduced an ANN model to learn from data and make predictions or decisions accurately and efficiently. For this particular model, we have added a third parameter, the mean loss, to evaluate its performance during training. The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data.
+
+Mean Accuracy for 5 folds: 0.95344
+F1 Score: 0.95157
+The mean loss is: 0.14936
+
+The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data. By monitoring and optimizing this, we aim to improve the model's ability.
+
+#### Global Results 
+We have compared the 3 models that had the highest accuracy and F1 score values, to evaluate which model was the best according to these two parameters.
+
+<div align="center">
+  <img src="images/iva_tdoc.png" alt="">
+</div>
+
+<p align="right">
+  <em><small>Figure </small></em>
+</p>
+
+This bar chart displays that Random Forest model is the most efficient one, outperforming other models in terms of both accuracy and computational efficiency. <br>
+
+In addition, we compute the confusion matrix for IvaM exemption codes. This measure, in addition to telling us how accurate the model is, gives us an idea of "how" the model gets the prediction wrong by providing the false negative e and false positive. 
+
+<div align="center">
+  <img src="images/iva_tdoc.png" alt="">
+</div>
+
+<p align="right">
+  <em><small>Figure </small></em>
+</p>
+
+The confusion matrix shows that the model has a good ability to distinguish between the most common classes. The cells on the main diagonal represent the correct predictions. We note that the cells with the darkest shades of blue are on the diagonal, indicating that the model has good accuracy for these classes, especially for class 374.0 and class 324.0.
 
 ## 5 - Conclusions
+- Overall, we are pleased with the performance of our model. Our satisfaction stems from its consistent adherence to our established quality benchmarks and its ongoing improvement towards achieving optimal predictive capabilities. This reliability instills confidence in the model's ability to make accurate predictions, contributing to our overall confidence in its effectiveness for the task at hand.
+
+- While we are generally pleased with the performance of our model, we acknowledge its limitation in predicting exemption codes categorized under the class "Others". We recognize that this issue could potentially be addressed by utilizing a more balanced dataset. By ensuring that the dataset includes a sufficient representation of instances from each exemption code category, including those within the "Others" class, we can provide the model with a more comprehensive understanding of the underlying patterns and relationships.
+
+- This approach may enable the model to better capture the nuances associated with predicting exemption codes across all classes, thereby enhancing its overall predictive accuracy and effectiveness.
 
 
 
