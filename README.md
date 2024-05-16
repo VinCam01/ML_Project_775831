@@ -157,7 +157,7 @@ Considering the evaluation metrics and all the previous findings, we can estimat
 To reinforce these fulfilling parameters, we set a stacked bar chart that shows the right and the wrong predictions of the IvaM exemption codes for the Random Forest model.
 
 <div align="center">
-  <img src="images/iva_tdoc.png" alt="">
+  <img src="images/predictions.png" alt="">
 </div>
 
 <p align="right">
@@ -203,7 +203,7 @@ The mean loss provides insight regarding how the model is minimizing errors betw
 We have compared the 3 models that had the highest accuracy and F1 score values, to evaluate which model was the best according to these two parameters.
 
 <div align="center">
-  <img src="images/iva_tdoc.png" alt="">
+  <img src="images/model_comparison.png" alt="">
 </div>
 
 <p align="right">
@@ -215,7 +215,7 @@ This bar chart displays that Random Forest model is the most efficient one, outp
 In addition, we compute the confusion matrix for IvaM exemption codes. This measure, in addition to telling us how accurate the model is, gives us an idea of "how" the model gets the prediction wrong by providing the false negative e and false positive. 
 
 <div align="center">
-  <img src="images/iva_tdoc.png" alt="">
+  <img src="images/conf_mtx.png" alt="">
 </div>
 
 <p align="right">
