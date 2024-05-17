@@ -159,7 +159,12 @@ The main purpose is to compare the models based on the chosen metrics to find th
 ## 4 - Results
 This section discusses and compares the performance of different models to determine which one is the most effective for classifying exception codes.
 
-### **4.1 - Logistic Regression**
+### **4.1 - Logistic Regression Results**
+
+
+- **Mean Accuracy**: 93,73%
+- **F1 Score**: 0.9344
+
 
 ### **4.2 - Random Forest Results** 
 We have introduced the Random Forest model, that is a powerful ensemble learning method in handling complex classification tasks and providing accurate predictions. <br>
@@ -176,7 +181,7 @@ The Decision Tree model has showcased remarkable performance, registering notabl
 
 This indicates its proficiency in accurately classifying instances and effectively balancing precision and recall.
 
-#### **4.4 - Support Vector Machine Results** 
+### **4.4 - Support Vector Machine Results** 
 SVMs operate by finding the optimal hyperplane that best separates different classes in the feature space, maximizing the margin between them. The Support Vector Machine model demonstrates us a slight degrowth over previously tested models, achieving consistent accuracy levels.
 
 - **Mean accuracy**: 95.12%
@@ -185,7 +190,7 @@ SVMs operate by finding the optimal hyperplane that best separates different cla
 This suggests a marginal but notable deterioration in the model's learning capability. <br>
 For this model, we had to stop hyperparameters tuning process because we have noticed it was extremely computationally expensive, so we decided to don't perform it since the metres were already good.
 
-### **4.4 - K-Nearest Neighbours Results** 
+### **4.5 - K-Nearest Neighbours Results** 
 We have implemented a KNN model with the goal of exploiting the similarities between the exemption codes to make more accurate predictions. Considering the KNN results, there was an ascent regarding our parameters, going to confirm the significance and validity of the model.
 
 - **Mean Accuracy**: 96.36%
@@ -200,7 +205,7 @@ Lastly, we have introduced an ANN model to learn from data and make predictions 
 
 The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data. By monitoring and optimizing this, we aim to improve the model's ability.
 
-**4.6 Global Results** <br> 
+**4.7 Global Results** <br> 
 We have compared the 3 models that had the highest accuracy and F1 score values, to evaluate which model was the best according to these two parameters.
 
 <div align="center">
