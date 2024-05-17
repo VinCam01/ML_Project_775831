@@ -30,6 +30,7 @@ As we can see in *Figure 1*, in our dataset there were some columns with almost 
 - `RifNormativo` is the normative reference.
 - `Conto`, `ContoStd` and `CoDitta` represent an internal mapping of the companies.
 - `Art1` provides similar informations to variable `Valore1`.
+  
 In order to manage the remaining NaN values, we adopted two strategies. For every feature, except from `RF`, we filled null values with the most frequent class within the variable. Regarding the remain one, we filled null values with a new class, called 'ND'; we did it
 because previous strategy is not suitable for a feature with a huge number of NaN values (approximately 79.000). Indeed, in our opinion, computing the most frequent class based on less than half occurrences would have damaged data integrity. 
 
