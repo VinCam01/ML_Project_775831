@@ -145,11 +145,19 @@ Lastly, we implemented an ANN.
 
 
 ## 3 - Experimental Design
+In this section, we present the experiments conducted to validate the effectiveness of our model for classifying exception codes.
 
+### 3.1 - Experiment 1
+The main purpose is to evaluate the performance of the proposed model’s performance based on two metrics.
+- Accuracy: measures the model’s ability to correctly predict the class of an observation, it represents the ratio of correctly classified instances to the total number of instances in the dataset.
+- F1 score: provides a unique metric that include both the “precision” and “recall”. Precision measures the accuracy of positive predictions made by the model. It is calculated as the ratio of true positive predictions to the total number of positive predictions made by the model. Recall measures the model's ability to identify all relevant instances in the dataset. It is calculated as the ratio of true positive predictions to the total number of actual positive instances in the dataset.
 
+In evaluating classification models, both accuracy and the F1 score are indispensable. Accuracy provides a general overview of correctness, but in cases of class imbalance, it may be skewed by dominant classes. Meanwhile, the F1 score, by combining precision and recall, offers a balanced perspective, crucial for discerning the model's ability to correctly identify minority classes and minimize false positives/negatives. Together, these metrics ensure a comprehensive assessment, considering both overall correctness and the model's precision-recall balance, vital for real-world applicability.
+### 3.2 - Experiment 2
+The main purpose is to compare the models based on the chosen metrics to find the most performant one and implement it as the final solution.
 
 ## 4 - Results
-In this section the results obtained by the models are discussed.
+This section discusses and compares the performance of different models to determine which one is the most effective for classifying exception codes.
 
 ### **4.1 - Logistic Regression**
 
@@ -157,22 +165,22 @@ In this section the results obtained by the models are discussed.
 We have introduced the Random Forest model, that is a powerful ensemble learning method in handling complex classification tasks and providing accurate predictions. <br>
 Considering the evaluation metrics and all the previous findings, we can estimate that the average accuracy is 96.6 % and the F1 score is 97% for IvaM exemptions codes prediction in the Random Forest model: <br>
 
-- **Mean Accuracy**: 0.966267564652884
-- **F1 Score**: 0.965914939103063
+- **Mean Accuracy**: 96.63%
+- **F1 Score**: 0.9659
 
 ### **4.3 - Decision Tree Results** 
 The Decision Tree model has showcased remarkable performance, registering notable accuracy and F1 scores values:
 
-- **Mean accuracy**: 0.9621097881510089
-- **F1 Score**: 0.9620105397238538
+- **Mean accuracy**: 96.21%
+- **F1 Score**: 0.9620
 
 This indicates its proficiency in accurately classifying instances and effectively balancing precision and recall.
 
 #### **4.4 - Support Vector Machine Results** 
 SVMs operate by finding the optimal hyperplane that best separates different classes in the feature space, maximizing the margin between them. The Support Vector Machine model demonstrates us a slight degrowth over previously tested models, achieving consistent accuracy levels.
 
-- **Mean accuracy**: 0.9512115074882012
-- **F1 Score**: 0.9503272225910833
+- **Mean accuracy**: 95.12%
+- **F1 Score**: 0.9503
 
 This suggests a marginal but notable deterioration in the model's learning capability. <br>
 For this model, we had to stop hyperparameters tuning process because we have noticed it was extremely computationally expensive, so we decided to don't perform it since the metres were already good.
@@ -180,15 +188,15 @@ For this model, we had to stop hyperparameters tuning process because we have no
 ### **4.4 - K-Nearest Neighbours Results** 
 We have implemented a KNN model with the goal of exploiting the similarities between the exemption codes to make more accurate predictions. Considering the KNN results, there was an ascent regarding our parameters, going to confirm the significance and validity of the model.
 
-- **Mean Accuracy**: 0.9636251020735521
-- **F1 Score**: 0.9633274178052911
+- **Mean Accuracy**: 96.36%
+- **F1 Score**: 0.9633
 
 ### **4.6 Artificial Neural Network Results** 
 Lastly, we have introduced an ANN model to learn from data and make predictions or decisions accurately and efficiently. For this particular model, we have added a third parameter, the mean loss, to evaluate its performance during training. The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data.
 
-- **Mean Accuracy for 5 folds**: 0.95344
-- **F1 Score**: 0.95157
-- **Mean loss is**: 0.14936
+- **Mean Accuracy for 5 folds**: 95.33%
+- **F1 Score**: 0.9515
+- **Mean loss is**: 0.1479
 
 The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data. By monitoring and optimizing this, we aim to improve the model's ability.
 
