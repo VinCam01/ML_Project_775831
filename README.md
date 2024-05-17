@@ -13,7 +13,7 @@ The objective of this project is to develop a machine learning model that is cap
 The company provides us with a substantial dataset, comprising approximately 130,000 invoices, each characterized by 45 related features, including very useful informations like ATECO code, document type, invoice type, VAT rate, article description, amount and many more. 
 
 ### 2.1 - Data Preprocessing
-The first step of our work has been the visualization of missing value:
+We started our analysis by visualizing the missing values in order to understand how they are distributed among the dataset:
 
 <div align="center">
   <img src="images/nan.png" alt="">
@@ -23,9 +23,21 @@ The first step of our work has been the visualization of missing value:
   <em><small>Figure 1</small></em>
 </p>
 
-As we can see in *Figure 1*, in our dataset there were some columns with almost only null values. So we decided to drop the variable that have more than 100,000 null values and also the ones that were not important to reach our goal. Then, in order to manage the remaining NaN values, we fill them with the most frequent class within the variable. This approach allows us to preserve the integrity of our data and avoid to lose potentially useful informations. 
+As we can see in *Figure 1*, in our dataset there were some columns with almost only null values, so we decided to drop the features that have more than 100,000 null values in order to maintain the integrity of the dataset. Subsequently, based on our knowledge, we dropped the features representing redundant information for the accomplishment of our goal, namely:
+- `Unnamed: 0` represents an index.
+- `Descrizione Riga` describes the object of the transaction.
+- `DataDoc` is the date of the transaction.
+- `RifNormativo` is the normative reference.
+- `Conto`, `ContoStd` and `CoDitta` represent an internal mapping of the companies.
+- `Art1` provides similar informations to variable `Valore1`.
+In order to manage the remaining NaN values, we adopted two strategies. For every feature, except from `RF`, we filled null values with the most frequent class within the variable. Regarding the remain one, we filled null values with a new class, called 'ND'; we did it
+because previous strategy is not suitable for a feature with a huge number of NaN values (approximately 79.000). Indeed, in our opinion, computing the most frequent class based on less than half occurrences would have damaged data integrity. 
 
-Sequently, we focus our attention on the variables, making them suitable for the prediction. The first problem we encountered was the presence of unbalanced classes in many columns: in other words, there were many classes with a few observations. To overcome this issue, we chose a threshold, below which all classes were grouped into a new class called 'OTHER'. 
+Sequently, we focused on making features suitable for the prediction. 
+After an exploratory analysis, we understood that the distribution of the classess within the features was strongly unbalanced: there were a few classes with many observations and many classes with very few observations. 
+This is problematic because, in the case of the independent variables, encoding would create a large number of columns with nearly zero variance. Meanwhile, for the dependent variable, the model would struggle to learn how to classify invoices into exemption codes with very few observations. 
+To overcome this issue, we chose a threshold, below which all classes were grouped into a new class called 'OTHER'. 
+The definition of this threshold was based on the distribution of each specific variable, this is because generalizing it would have lost important information.
 
 <div align="center">
   <img src="images/iva_tdoc.png" alt="">
@@ -35,8 +47,8 @@ Sequently, we focus our attention on the variables, making them suitable for the
   <em><small>Figure 2</small></em>
 </p>
 
-In *Figure 2* is showed an example on how change the distibution of the variables '*Iva*' and '*Tdoc*' after that operation. We chosen a thresold of 1,200 occurrences for the first and 1,000 for the second.
-Very interesting was also the case of the '*Ateco*' column: there were 386 classes extremely unbalanced and the visualization was horrible.
+*Figure 2* shows, as an example, how  the distibutions of the variables `Iva` and `Tdoc` changed after that rebalancing of the classes.
+`Ateco` required some additional manipulations, indeed originally it was consisting in a huge number of classess, 386, unevenly distributed. This is because the ateco code divides commercial activities extremely precisely, so each class generally reports few observations.
 
 <div align="center">
   <img src="images/ateco.png" alt="">
