@@ -146,27 +146,21 @@ Lastly, we implemented an ANN.
 
 ## 3 - Experimental Design
 
+
+
 ## 4 - Results
-***4.1 Random Forest Results*** <br>
+In this section the results obtained by the models are discussed.
+
+### **4.1 - Logistic Regression**
+
+### **4.2 - Random Forest Results** 
 We have introduced the Random Forest model, that is a powerful ensemble learning method in handling complex classification tasks and providing accurate predictions. <br>
 Considering the evaluation metrics and all the previous findings, we can estimate that the average accuracy is 96.6 % and the F1 score is 97% for IvaM exemptions codes prediction in the Random Forest model: <br>
 
 - **Mean Accuracy**: 0.966267564652884
 - **F1 Score**: 0.965914939103063
 
-To reinforce these fulfilling parameters, we set a stacked bar chart that shows the right and the wrong predictions of the IvaM exemption codes for the Random Forest model.
-
-<div align="center">
-  <img src="images/predictions.png" alt="">
-</div>
-
-<p align="right">
-  <em><small>Figure </small></em>
-</p>
- 
-As we can see, all the IvaM exemption codes are correctly predicted by our model, except for the value 314.0 which shows a notable number of incorrect predictions. Thus, Random Forest model has demonstrated remarkable accuracy and robustness, making it a reliable tool for identifying and classifying exemption codes with high precision.
-
-***4.2 Decision Tree Results*** <br>
+### **4.3 - Decision Tree Results** 
 The Decision Tree model has showcased remarkable performance, registering notable accuracy and F1 scores values:
 
 - **Mean accuracy**: 0.9621097881510089
@@ -174,32 +168,31 @@ The Decision Tree model has showcased remarkable performance, registering notabl
 
 This indicates its proficiency in accurately classifying instances and effectively balancing precision and recall.
 
-
-***4.3 Support Vector Machine(SVM) Results*** <br>
+#### **4.4 - Support Vector Machine Results** 
 SVMs operate by finding the optimal hyperplane that best separates different classes in the feature space, maximizing the margin between them. The Support Vector Machine model demonstrates us a slight degrowth over previously tested models, achieving consistent accuracy levels.
 
- **Mean accuracy**: 0.9512115074882012
+- **Mean accuracy**: 0.9512115074882012
 - **F1 Score**: 0.9503272225910833
 
 This suggests a marginal but notable deterioration in the model's learning capability. <br>
 For this model, we had to stop hyperparameters tuning process because we have noticed it was extremely computationally expensive, so we decided to don't perform it since the metres were already good.
 
-***4.4 K-Nearest Neighbours Results(KNN)*** <br>
+### **4.4 - K-Nearest Neighbours Results** 
 We have implemented a KNN model with the goal of exploiting the similarities between the exemption codes to make more accurate predictions. Considering the KNN results, there was an ascent regarding our parameters, going to confirm the significance and validity of the model.
 
-Mean Accuracy:  0.9636251020735521
-F1 Score: 0.9633274178052911
+- **Mean Accuracy**: 0.9636251020735521
+- **F1 Score**: 0.9633274178052911
 
-***4.5 Artificial Neural Network(ANN) Results*** <br>
+### **4.6 Artificial Neural Network Results** 
 Lastly, we have introduced an ANN model to learn from data and make predictions or decisions accurately and efficiently. For this particular model, we have added a third parameter, the mean loss, to evaluate its performance during training. The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data.
 
-Mean Accuracy for 5 folds: 0.95344
-F1 Score: 0.95157
-The mean loss is: 0.14936
+- **Mean Accuracy for 5 folds**: 0.95344
+- **F1 Score**: 0.95157
+- **Mean loss is**: 0.14936
 
 The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data. By monitoring and optimizing this, we aim to improve the model's ability.
 
-***4.6 Global Results*** <br> 
+**4.6 Global Results** <br> 
 We have compared the 3 models that had the highest accuracy and F1 score values, to evaluate which model was the best according to these two parameters.
 
 <div align="center">
@@ -207,7 +200,7 @@ We have compared the 3 models that had the highest accuracy and F1 score values,
 </div>
 
 <p align="right">
-  <em><small>Figure </small></em>
+  <em><small>Figure 6</small></em>
 </p>
 
 This bar chart displays that Random Forest model is the most efficient one, outperforming other models in terms of both accuracy and computational efficiency. <br>
