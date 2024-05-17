@@ -10,7 +10,7 @@ It is well established that certain invoice types are not subject to value-added
 The objective of this project is to develop a machine learning model that is capable of predicting and suggesting the VAT exemption code (IvaM) to users based on the data on the invoice. This will enable the process to be streamlined. The following sections will engage in a comprehensive examination of the argument presented in this work.
 
 ## 2 - Methods
-The company provides us with a substantial dataset, comprising approximately 130,000 invoice lines and 45 characteristics for each of them, including very useful informations like ATECO code, document type, invoice type, VAT rate, article description, amount and many more. 
+The company provides us with a substantial dataset, comprising approximately 130,000 invoices, each characterized by 45 related features, including very useful informations like ATECO code, document type, invoice type, VAT rate, article description, amount and many more. 
 
 ### 2.1 - Data Preprocessing
 The first step of our work has been the visualization of missing value:
