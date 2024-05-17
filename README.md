@@ -59,8 +59,8 @@ The definition of this threshold was based on the distribution of each specific 
   <em><small>Figure 3</small></em>
 </p>
 
-As we can see in *Figure 3*, here it has been done a more sophisticated job: before the union of the less frequent classes, we grouped the '*Ateco*' code according to the first two digits. In fact, conducting a search, we discovered that they represent the macrocategory of the commercial activities.
-Lastly, we decided to maintain the same approach also for our response variable, '*IvaM*', in order to maintain high sensitivity in the model.
+To solve this, we mantained the first two digits, which represents tha macro-category of the commercial activity, of each occurrences. Subsequently, we defined a threshold of 1000, below which all classes were grouped into a new class called 'OTHER'.
+Lastly, regarding the response variable `IvaM`, we adopted a significantly lower threshold of 250, in comparison with the independent features, due to the fact that we wanted to keep an high sensitivity in the model. Indeed, an higher threshold would have meant fewer code-specific exemptions that the model is able to predict.
 
 <div align="center">
   <img src="images/ivam.png" alt="">
@@ -70,9 +70,10 @@ Lastly, we decided to maintain the same approach also for our response variable,
   <em><small>Figure 4</small></em>
 </p>
 
-Without this procedure it would have been very difficult for the model to predict exemption codes that are present very few times in the train data. However, in this case we adopted a lower threshold of 250 to avoid oversimplification of the model.
+Once the classes were balanced, we proceeded with the encoding of categorical variables, adopting binary encoding for the ones with two classes and one-hot-encoding for the remaining ones.
 
-Once the classes were balanced, we proceeded implementing binary encoding and one-hot-encoding for the categorical variables. Then, since after encoding the number of columns increased, we implemented the Cramer's method in order to eliminate or put in the class 'OTHER', all those variables that have a Cramer's coefficient less than 0.25; indicating a low correlation with the response variable. The Cramer's method is a statistical technique employed to assess the correlation between two categorical variables represented in a contingency table. It entails calculating the chi-square statistic for the table and normalising it to account for table size. The resulting value, known as Cramer's coefficient, ranges from 0 to 1, with higher values indicating a stronger association. It is used to quantify the degree of relationship between categorical variables.
+Afterwords, we implemented the Cramer's V method to retain only the categorical variables that have a strong association with the response one. Indeed, this method is used to assess the association between two categorical variables, based on the chi-squared, it provides a value between 0 and 1 where 0 represents no association and 1 perfect association.
+After computing the metric, we defined a 0.25 threshold and for the features below it, we either included them in the class 'OTHER', if the variable was encoded, or dropped it otherwise.
 
 ### 2.2 - Models 
 In this section we will explore all the statistical and machine learning models that we implemented. For every model has been done a k-fold cross-validation with k equal to five. Additionally, where possible has been used the Optuna hyperparameter tuning to discover the best parameters. We choose this optimizator because is computationally less expensive then Grid Search, and performs better compared to the Random Search; in fact Optuna employs Bayesian optimisation to efficiently explore the hyper-parameter space, focusing on hyper-parameter sets that demonstrate optimal performance during the search process and incorporating historical performance data.
