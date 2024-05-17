@@ -76,7 +76,10 @@ Afterwords, we implemented the Cramer's V method to retain only the categorical 
 After computing the metric, we defined a 0.25 threshold and for the features below it, we either included them in the class 'OTHER', if the variable was encoded, or dropped it otherwise.
 
 ### 2.2 - Models 
-In this section we will explore all the statistical and machine learning models that we implemented. For every model has been done a k-fold cross-validation with k equal to five. Additionally, where possible has been used the Optuna hyperparameter tuning to discover the best parameters. We choose this optimizator because is computationally less expensive then Grid Search, and performs better compared to the Random Search; in fact Optuna employs Bayesian optimisation to efficiently explore the hyper-parameter space, focusing on hyper-parameter sets that demonstrate optimal performance during the search process and incorporating historical performance data.
+In this section we will explore all the statistical and machine learning models that we attempted in order to find the best performing one regarding the accomplishment of our goal. 
+To asses the performance of our models, we adopted a 5 fold cross-validation, instead of a train-test split. 5 fold cross-validation is an algorithm that initially partitions the dataset into five equal-sized subsets or folds. The cross-validation process then iterates five times, each time utilizing a different fold as the validation set while the remaining four folds serve as the training data. This ensures that every data point is used for validation exactly once across the five iterations, thereby maximizing data utilization. During each iteration, the model is trained on the training folds and evaluated on the validation fold, yielding a performance metric. These performance metrics are recorded for each iteration. 
+Subsequently, the average performance across all five iterations is computed to obtain a single, robust estimate of the model's performance. This approach not only reduces bias in performance estimates but also enhances the reliability and robustness of the model evaluation process. Furthermore, the use of multiple folds allows for a comprehensive comparison of different models or parameter settings, aiding in the selection of the most suitable model configuration for the given dataset.
+Additionally, where possible, Optuna hyperparameter tuning was employed to discover the best parameters. We opted for this optimizer due to its computational efficiency compared to Grid Search, and its superior performance relative to Random Search. Optuna leverages Bayesian optimization techniques to navigate the hyperparameter space efficiently, prioritizing hyperparameter sets that exhibit optimal performance throughout the search process. By incorporating historical performance data, Optuna enhances the likelihood of identifying optimal hyperparameters, contributing to improved model performance.
 
 #### 2.2.1 - Logistic Regression
 The first model used is a Logistic Regression.
@@ -173,58 +176,6 @@ The main purpose is to compare the models based on the chosen metrics to find th
 ## 4 - Results
 This section discusses and compares the performance of different models to determine which one is the most effective for classifying exception codes.
 
-### **4.1 - Logistic Regression Results**
-Firstly, we have evaluated the results of the Logistic Regression model:
-
-- **Mean Accuracy**: 93,73%
-- **F1 Score**: 0.9344
-
-Despite being the simplest model with the least significant results, Logistic Regression provides valuable baseline insights between the input features and the target variable.
-
-### **4.2 - Random Forest Results** 
-We have introduced the Random Forest model, that is a powerful ensemble learning method in handling complex classification tasks and providing accurate predictions. <br>
-Considering the evaluation metrics and all the previous findings, we can estimate that the average accuracy is 96.6 % and the F1 score is 96.6% for IvaM exemptions codes prediction in the Random Forest model: <br>
-
-- **Mean Accuracy**: 96.63%
-- **F1 Score**: 0.9659
-
-This model demonstrates robust predictive capabilities, achieving high accuracy and F1 score values.
-
-### **4.3 - Decision Tree Results** 
-The Decision Tree model has showcased remarkable performance, registering notable accuracy and F1 scores values:
-
-- **Mean accuracy**: 96.21%
-- **F1 Score**: 0.9620
-
-This indicates its proficiency in accurately classifying instances and effectively balancing precision and recall.
-
-### **4.4 - Support Vector Machine Results** 
-SVMs operate by finding the optimal hyperplane that best separates different classes in the feature space, maximizing the margin between them. The Support Vector Machine model demonstrates us a slight degrowth over previously tested models, achieving consistent accuracy levels.
-
-- **Mean accuracy**: 95.12%
-- **F1 Score**: 0.9503
-
-This suggests a marginal but notable deterioration in the model's learning capability. <br>
-For this model, we had to stop hyperparameters tuning process because we have noticed it was extremely computationally expensive, so we decided to don't perform it since the metres were already good.
-
-### **4.5 - K-Nearest Neighbours Results** 
-We have implemented a KNN model with the goal of exploiting the similarities between the exemption codes to make more accurate predictions. Considering the KNN results, there was an ascent regarding our parameters, going to confirm the significance and validity of the model.
-
-- **Mean Accuracy**: 96.36%
-- **F1 Score**: 0.9633
-
-### **4.6 Artificial Neural Network Results** 
-Lastly, we have introduced an ANN model to learn from data and make predictions or decisions accurately and efficiently. For this particular model, we have added a third parameter, the mean loss, to evaluate its performance during training. The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data.
-
-- **Mean Accuracy for 5 folds**: 95.34%
-- **F1 Score**: 0.9511
-- **Mean loss is**: 0.1479
-
-The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data. By monitoring and optimizing this, we aim to improve the model's ability.
-
-**4.7 Global Results** <br> 
-We have compared the 3 models that had the highest accuracy and F1 score values, to evaluate which model was the best according to these two parameters.
-
 <div align="center">
   <img src="images/model_comparison.png" alt="">
 </div>
@@ -233,7 +184,8 @@ We have compared the 3 models that had the highest accuracy and F1 score values,
   <em><small>Figure 5</small></em>
 </p>
 
-This bar chart displays that Random Forest model is the most efficient one, outperforming other models in terms of both accuracy and computational efficiency. <br>
+We have compared the 3 models that had the highest accuracy and F1 score values, to evaluate which model was the best according to these two parameters.
+This bar chart displays that Random Forest model is the most efficient one, outperforming other models in terms of both accuracy and F1 efficiency.
 
 In addition, we compute the confusion matrix for IvaM exemption codes. This measure, in addition to telling us how accurate the model is, gives us an idea of "how" the model gets the prediction wrong. 
 
@@ -246,13 +198,25 @@ In addition, we compute the confusion matrix for IvaM exemption codes. This meas
 </p>
 
 The confusion matrix shows that the model has a good ability to distinguish between the most common classes. The cells on the main diagonal represent the correct predictions. We note that the cells with the darkest shades of blue are on the diagonal, indicating that the model has good accuracy for these classes, especially for class 374.0 and class 324.0.
+Specifica tutte le variabili più particolari e il perchè dei risultati
+
+### **4.6 Artificial Neural Network Results** 
+Lastly, we have introduced an ANN model to learn from data and make predictions or decisions accurately and efficiently. For this particular model, we have added a third parameter, the mean loss, to evaluate its performance during training. The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data.
+
+- **Mean Accuracy for 5 folds**: 95.34%
+- **F1 Score**: 0.9511
+- **Mean loss is**: 0.1479
+
+The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data. By monitoring and optimizing this, we aim to improve the model's ability.
 
 ## 5 - Conclusions 
+
+- In conclusion, we cleaned our dataset handling NaN values,  
+
+- While we are generally pleased with the performance of our model, we acknowledge its limitation in predicting exemption codes categorized under the class 'OTHER'. We recognize that this issue could potentially be addressed by utilizing a more balanced dataset. By ensuring that the dataset includes a sufficient representation of instances from each exemption code category, including those within the "Others" class, we can provide the model with a more comprehensive understanding of the underlying patterns and relationships. This approach may enable the model to better capture the nuances associated with predicting exemption codes across all classes, thereby enhancing its overall predictive accuracy and effectiveness.
+
 - Overall, we are pleased with the performance of our model. Our satisfaction stems from its consistent adherence to our established quality benchmarks and its ongoing improvement towards achieving optimal predictive capabilities. This reliability instills confidence in the model's ability to make accurate predictions, contributing to our overall confidence in its effectiveness for the task at hand.
 
-- While we are generally pleased with the performance of our model, we acknowledge its limitation in predicting exemption codes categorized under the class "Others". We recognize that this issue could potentially be addressed by utilizing a more balanced dataset. By ensuring that the dataset includes a sufficient representation of instances from each exemption code category, including those within the "Others" class, we can provide the model with a more comprehensive understanding of the underlying patterns and relationships.
-
-- This approach may enable the model to better capture the nuances associated with predicting exemption codes across all classes, thereby enhancing its overall predictive accuracy and effectiveness.
 
 
 
