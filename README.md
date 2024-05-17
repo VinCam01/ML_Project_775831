@@ -160,18 +160,21 @@ The main purpose is to compare the models based on the chosen metrics to find th
 This section discusses and compares the performance of different models to determine which one is the most effective for classifying exception codes.
 
 ### **4.1 - Logistic Regression Results**
-
+Firstly, we have evaluated the results of the Logistic Regression model:
 
 - **Mean Accuracy**: 93,73%
 - **F1 Score**: 0.9344
 
+Despite being the simplest model with the least significant results, Logistic Regression provides valuable baseline insights between the input features and the target variable.
 
 ### **4.2 - Random Forest Results** 
 We have introduced the Random Forest model, that is a powerful ensemble learning method in handling complex classification tasks and providing accurate predictions. <br>
-Considering the evaluation metrics and all the previous findings, we can estimate that the average accuracy is 96.6 % and the F1 score is 97% for IvaM exemptions codes prediction in the Random Forest model: <br>
+Considering the evaluation metrics and all the previous findings, we can estimate that the average accuracy is 96.6 % and the F1 score is 96.6% for IvaM exemptions codes prediction in the Random Forest model: <br>
 
 - **Mean Accuracy**: 96.63%
 - **F1 Score**: 0.9659
+
+This model demonstrates robust predictive capabilities, achieving high accuracy and F1 score values.
 
 ### **4.3 - Decision Tree Results** 
 The Decision Tree model has showcased remarkable performance, registering notable accuracy and F1 scores values:
@@ -199,8 +202,8 @@ We have implemented a KNN model with the goal of exploiting the similarities bet
 ### **4.6 Artificial Neural Network Results** 
 Lastly, we have introduced an ANN model to learn from data and make predictions or decisions accurately and efficiently. For this particular model, we have added a third parameter, the mean loss, to evaluate its performance during training. The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data.
 
-- **Mean Accuracy for 5 folds**: 95.33%
-- **F1 Score**: 0.9515
+- **Mean Accuracy for 5 folds**: 95.34%
+- **F1 Score**: 0.9511
 - **Mean loss is**: 0.1479
 
 The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data. By monitoring and optimizing this, we aim to improve the model's ability.
@@ -213,19 +216,19 @@ We have compared the 3 models that had the highest accuracy and F1 score values,
 </div>
 
 <p align="right">
-  <em><small>Figure 6</small></em>
+  <em><small>Figure 5</small></em>
 </p>
 
 This bar chart displays that Random Forest model is the most efficient one, outperforming other models in terms of both accuracy and computational efficiency. <br>
 
-In addition, we compute the confusion matrix for IvaM exemption codes. This measure, in addition to telling us how accurate the model is, gives us an idea of "how" the model gets the prediction wrong by providing the false negative e and false positive. 
+In addition, we compute the confusion matrix for IvaM exemption codes. This measure, in addition to telling us how accurate the model is, gives us an idea of "how" the model gets the prediction wrong. 
 
 <div align="center">
   <img src="images/conf_mtx.png" alt="">
 </div>
 
 <p align="right">
-  <em><small>Figure </small></em>
+  <em><small>Figure 6</small></em>
 </p>
 
 The confusion matrix shows that the model has a good ability to distinguish between the most common classes. The cells on the main diagonal represent the correct predictions. We note that the cells with the darkest shades of blue are on the diagonal, indicating that the model has good accuracy for these classes, especially for class 374.0 and class 324.0.
