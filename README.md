@@ -179,7 +179,7 @@ This section discusses and compares the performance of different models to deter
 We have compared the 6 models that had the highest accuracy and F1 score values, to evaluate which model was the best according to these two parameters.
 This bar chart displays that Random Forest model is the most efficient one, outperforming other models in terms of both accuracy and F1 efficiency.
 
-In addition, we compute the confusion matrix for IvaM exemption codes. This measure, in addition to telling us how accurate the model is, gives us an idea of "how" the model gets the prediction wrong. 
+In addition, we compute the confusion matrix for Random Forest model. This measure, in addition to telling us how accurate the model is, gives us an idea of "how" the model gets the prediction wrong. 
 
 <div align="center">
   <img src="images/conf_mtx.png" alt="">
