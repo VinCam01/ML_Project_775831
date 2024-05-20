@@ -83,22 +83,21 @@ Additionally, where possible, Optuna hyperparameter tuning was employed to disco
 
 #### 2.2.1 - Logistic Regression
 The first model used is a Logistic Regression.
+Logistic regression is used to determine the probability of an event. Conventionally, the event is represented as a categorical dependent variable. The probability of the event is expressed using the sigmoid (or “logit”) function[^1]:
 
-**Key Points**:
-- Used to model the relationship between a binary dependent variable and one or more independent variables.
-- Estimates the probability of occurrence of the event of interest.
-- Produces coefficients indicating the effect of independent variables on the probability of success.
+$$
+P(\hat{Y} = 1 \mid X = x) = \frac{1}{1 + e^{-(b + \mathbf{w}^T \mathbf{x})}}
+$$
 
-As we will see in next sections, despite being the 'simplest' of the models used, the metrics are still very high
+dove $\mathbf{w} = \{w_1, w_2, \ldots, w_n\}$ sono i pesi e $b$ è il termine di bias. Logistic regression is used in classification problems and the coefficients are estimated using either the maximum likelihood estimator or stochastic gradient descent. 
+
+As we will see in next sections, despite being the 'simplest' of the models used, the metrics are still very high.
+
+[^1]:Kapoor, Amita, Antonio Gulli, and Sujit Pal. "Deep Learning with TensorFlow and Keras–3rd edition." Small (2017)
 
 #### 2.2.2 - Random Forest
 Secondly we implemented a Random Forest.
-
-**Key Points**:
-- Ensemble learning method used for classification tasks.
-- Builds multiple decision trees during training and outputs the class that is the mode of the classes of the individual trees.
-- Each tree is trained on a random subset of the training data and features, promoting diversity among the trees.
-- Handles non-linear relationships well and is robust to overfitting.
+Random forests is a statistical or machine-learning algorithm for prediction. Random decision forests easily adapt to nonlinearities found in the data and therefore tend to predict better than linear regression. More specifically, ensemble learning algorithms like random forests are well suited for medium to large datasets. The tree-based models form the building blocks of the random forest algorithm. A tree-based model involves recursively partitioning the given dataset into two groups based on a certain criterion until a predetermined stopping condition is met. At the bottom of decision trees are so-called leaf nodes or leaves[^2].
 
 **Hyperparameters**:
 - n_estimators: 117 -> number of trees in the forest.
@@ -106,13 +105,11 @@ Secondly we implemented a Random Forest.
 - 'min_samples_split': 3 -> minimum number of samples required to split an internal node.
 - 'min_samples_leaf': 1 -> minimum number of samples required in a leaf.
 
+[^2]:Schonlau, Matthias, and Rosie Yuyan Zou. "The random forest algorithm for statistical learning." The Stata Journal 20.1 (2020)
+
 #### 2.2.3 - Decision Tree
 Then we used a Decision Tree. 
-
-**Key Points**:
-- It represents a tree-like structure where each internal node represents a feature, each branch represents a decision rule, and each leaf node represents an outcome.
-- The model makes predictions by traversing the tree from the root node to a leaf node based on the features of the input data.
-- Unlike Random Forest, the decision tree model is a single tree structure.
+Decision trees can be applied to both regression and classification problems. A decision tree is a classifier expressed as a recursive partition of the instance space. The decision tree consists of nodes that form a rooted tree, meaning it is a directed tree with a node called “root” that has no incoming edges. All other nodes have exactly one incoming edge. A node with outgoing edges is called an internal or test node. All other nodes are called leaves (also known as terminal or decision nodes). In a decision tree, each internal node splits the instance space into two or more sub-spaces according to a certain discrete function of the input attributes values. In the simplest and most frequent case, each test considers a single attribute, such that the instance space is partitioned according to the attribute’s value. Each leaf is assigned to one class representing the most appropriate target value[^3].
 
 **Hyperparameters**:
 - 'max_depth': 42 -> maximum depth of the decision tree.
@@ -120,23 +117,21 @@ Then we used a Decision Tree.
 - 'min_samples_leaf': 1 -> minimum number of samples required to be at a leaf node
 - 'criterion': entropy -> specifies the function used to measure the quality of a split. 'Entropy' measures the impurity of a split, aiming to maximize information gain.
 
+[^3]:Rokach, Lior, and Oded Maimon. "Decision trees." Data mining and knowledge discovery handbook (2005): 165-192.
+
 #### 2.2.4 - Support Vector Machine
 Proceed our exploration implementing a Support Vector Machine.
-
-**Key Points**:
-- Finds the hyperplane that best separates classes in the feature space.
-- Maximizes margin between classes' nearest data points (support vectors).
-- Effective in high-dimensional spaces and robust to overfitting.
+The support vector machine (SVM) is an extension of the support vector classifier that results from enlarging the feature space in a specific way, using kernels. They allow to enlarge feature space in order to accommodate a non-linear boundary between the classes[^4].
+In linear classification, SVM map input vector to a higher dimensional space where a maximal separating hyperplane is constructed. Two parallel hyperplanes are constructed on each side of the hyperplane that separate the data. The separating hyperplane is the hyperplane that maximize the distance between the two parallel hyperplanes. An assumption is made that the larger the margin or distance between these parallel hyperplanes the better the generalization error of the classifier will be. In the case we of nonlinear dividing line, rather than fitting nonlinear curves to the data, SVM handles this by using a kernel function to map the data into a different space where a hyperplane can be used to do the separation[^5].
 
 The implementation of this model took a long time, so carrying out hyperparameters tuning would have been computationally extremely time-consuming and inefficient since, as we shall see in the results section, the metrics are very good anyway.
 
-#### 2.2.5 - K-Nearest Neighbors
-Then we perforder a KNN model.
+[^4]:James, Gareth, et al. An introduction to statistical learning. Vol. 112. New York: springer, 2013.
+[^5]:Bhavsar, Himani, and Mahesh H. Panchal. "A review on support vector machine for data classification." International Journal of Advanced Research in Computer Engineering & Technology (IJARCET) 1.10 (2012): 185-189.
 
-**Key Points**:
-- It classifies data points based on the majority class of their nearest neighbors.
-- The "K" in KNN represents the number of neighbors to consider when making predictions.
-- It is non-parametric and instance-based, meaning it does not make assumptions about the underlying data distribution.
+#### 2.2.5 - K-Nearest Neighbors
+Then we performed a KNN model.
+Nearest neighbors classification, also known KNN, is based on the idea that the nearest patterns to a target pattern $x$ , for which we seek the label, deliver useful label information. KNN assigns the class label of the majority of the K-nearest patterns in data space. For this sake, we have to be able to define a similarity measure in data space. In ℝ, it is reasonable to employ the Euclidean distance. The choice of $K$ defines the locality of KNN. For $K = 1$, little neighbor- hoods arise in regions, where patterns from different classes are scattered. For larger neighborhood sizes, e.g. $K = 20$, patterns with labels in the minority are ignored[^6].
 
 **Hyperparameters**:
 - 'n_neighbors': 14 -> number of neighbors considered during classification
@@ -144,15 +139,11 @@ Then we perforder a KNN model.
 - 'algorithm': 'auto' -> specifies the algorithm used to compute nearest neighbors. The option 'Auto' automatically selects the most suitable algorithm based on the data size and nature.
 - 'leaf_size': 21 -> determines the maximum leaf size during tree construction. Is important to notice that in this case, this hyperparameter is superfluous; infact it is specific to tree-based algorithms like ball_tree or kd_tree.
 
+[^6]:Peterson, Leif E. "K-nearest neighbor." Scholarpedia 4.2 (2009): 1883.
+
 #### 2.2.6 - Artificial Neural Network
 Lastly, we implemented an ANN.
-
-**Key Points**:
-- Artificial Neural Networks consist of interconnected nodes (neurons) organized in layers: input layer, hidden layers, and output layer.
-- Information is processed through the network by propagating forward from input to output layers.
-- Neurons in each layer apply an activation function to the weighted sum of inputs to produce output.
-- ANNs are powerful for complex pattern recognition and non-linear relationships in data.
-- Training involves adjusting weights and biases through backpropagation using optimization algorithms like gradient descent.
+Artificial neural networks is a popular machine learning technique inspired by the biological neural network in the human brain. Feed forward neural networks are a common type of ANN which sends the weight values of each artificial neuron as output to the next layer after processing with inputs from neurons in the previous layer. An important class of feed forward neural network is Multilayer Perceptron (MLP). The back propagation algorithm is the most widely used MLP training technique. This changes the weights between neurons to minimize the error. This model is quite good in learning patterns. It can easily adapt to new values in the data, but the system can show a slow convergence and has the risk of a local optimum. The training data set was used to determine ANN neuron and bias weight values. Training was repeated to obtain the lowest level of error by changing the number of neurons and the epoch number. Then, the trained algorithm was applied on the test data set[^7].
 
 **Parameters**:
 - EPOCHS = 50 -> number of times the entire dataset is passed forward and backward through the neural network during training. 
@@ -160,6 +151,7 @@ Lastly, we implemented an ANN.
 - NB_CLASSES = 26 -> number of classes in the classification task.
 - N_SPLITS = 5 -> number of folds for cross-validation.
 
+[^7]:Saritas, Mucahid Mustafa, and Ali Yasar. "Performance analysis of ANN and Naive Bayes classification algorithm for data classification." International journal of intelligent systems and applications in engineering 7.2 (2019): 88-91.
 
 ## 3 - Experimental Design
 In this section, we present the experiments conducted to validate the effectiveness of our model for classifying exception codes.
