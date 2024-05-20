@@ -169,7 +169,7 @@ The main purpose is to compare the models based on the chosen metrics to find th
 This section discusses and compares the performance of different models to determine which one is the most effective for classifying exception codes.
 
 <div align="center">
-  <img src="images/model_comparison.png" alt="">
+  <img src="images/model_comp.png" alt="">
 </div>
 
 <p align="right">
