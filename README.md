@@ -194,8 +194,8 @@ We note that the cells with the darkest shades of blue are on the diagonal, indi
 Conversely, there are some classes like 374.0 that despite has a total of 5005 correct observations accounting for a good portion of the total, it shows also a misclassifications problem, with huge number of incorrect observations from class 300.0. This disparity showcase that lasses 374.0 and 300.0 may have similar features that confuse the model regarding  similar variables or patterns in the input data, so when the model encounters an observation of class 374.0 that has characteristics in common with class 300.0 it may misclassify it as 300.0, negatively affecting the predictions.
 Despite that, the confusion matrix reveals that overall the model performs well for the majority of the classes.
 
-### **4.6 Artificial Neural Network Results** 
-Lastly, we have introduced an ANN model to learn from data and make predictions or decisions accurately and efficiently. For this particular model, we have added a third parameter, the mean loss, to evaluate its performance during training. The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data.
+### **4.1 Artificial Neural Network Results** 
+We have introduced an ANN model to learn from data and make predictions or decisions accurately and efficiently. For this particular model, we have added a third parameter, the mean loss, to evaluate its performance during training. The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data.
 
 - **Mean Accuracy for 5 folds**: 95.34%
 - **F1 Score**: 0.9511
