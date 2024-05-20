@@ -176,7 +176,7 @@ This section discusses and compares the performance of different models to deter
   <em><small>Figure 5</small></em>
 </p>
 
-We have compared the 3 models that had the highest accuracy and F1 score values, to evaluate which model was the best according to these two parameters.
+We have compared the 6 models that had the highest accuracy and F1 score values, to evaluate which model was the best according to these two parameters.
 This bar chart displays that Random Forest model is the most efficient one, outperforming other models in terms of both accuracy and F1 efficiency.
 
 In addition, we compute the confusion matrix for IvaM exemption codes. This measure, in addition to telling us how accurate the model is, gives us an idea of "how" the model gets the prediction wrong. 
@@ -189,7 +189,8 @@ In addition, we compute the confusion matrix for IvaM exemption codes. This meas
   <em><small>Figure 6</small></em>
 </p>
 
-The confusion matrix shows that the model has a good ability to distinguish between the most common classes. The cells on the main diagonal represent the correct predictions.
+The cells on the main diagonal represent the correct predictions.
+The confusion matrix shows that the model has a good ability to distinguish between the most common classes. 
 We note that the cells with the darkest shades of blue are on the diagonal, indicating that the model has good accuracy for these classes. Particularly, the model shows very high accuracy for class 22.0 (1772 correct predictions out of a total of 1781) and for class 315.0 (4126 correct predictions out of a total of 4211), showing that the model performs exceptionally well for this class. 
 Conversely, there are some classes like 374.0 that despite has a total of 5005 correct observations accounting for a good portion of the total, it shows also a misclassifications problem, with huge number of incorrect observations from class 300.0. This disparity showcase that lasses 374.0 and 300.0 may have similar features that confuse the model regarding  similar variables or patterns in the input data, so when the model encounters an observation of class 374.0 that has characteristics in common with class 300.0 it may misclassify it as 300.0, negatively affecting the predictions.
 Despite that, the confusion matrix reveals that overall the model performs well for the majority of the classes.
