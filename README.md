@@ -195,7 +195,7 @@ In order to display how our best model classify each occurrency, it has been set
 The confusion matrix shows that the model has a good ability to distinguish between the most common classes. Particularly, the model displays very high accuracy for class 22.0 (1772 correct predictions out of a total of 1781) and for class 315.0 (4126 correct predictions out of a total of 4211). Conversely, there are some classes like 374.0 that despite has a total of 5005 correct observations accounting for a good portion of the total, it also shows a misclassifications problem, with huge number of incorrect observations from class 300.0. This disparity showcases that lasses 374.0 and 300.0 may have similar features that confuse the model regarding similar variables or patterns in the input data, so when the model encounters an observation of class 374.0 that has characteristics in common with class 300.0 it may misclassify it as 300.0, negatively affecting the predictions. Despite that, the confusion matrix reveals that overall the model performs well for the majority of the classes.
 
 <div align="center">
-  <img src="images/accuracy_ivam.png" alt="">
+  <img src="images/accuracy_Ivam.png" alt="">
 </div>
 
 <p align="right">
