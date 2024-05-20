@@ -161,7 +161,7 @@ In this section, the experiments conducted to validate the effectiveness of our 
 The main purpose is to evaluate the performance of the proposed models based on two metrics and on the comparison with the benchmark.
 - Accuracy: measures the model’s ability to correctly predict the class of an observation, it represents the ratio of correctly classified instances to the total number of instances in the dataset.
 - F1 score: provides a unique metric that include both the “precision” and “recall”. Precision measures the accuracy of positive predictions made by the model. It is calculated as the ratio of true positive predictions to the total number of positive predictions made by the model. Recall measures the model's ability to identify all relevant instances in the dataset. It is calculated as the ratio of true positive predictions to the total number of actual positive instances in the dataset.
-- Benchmark: consists in a logistic regression with only the nature code ('Iva') as independent variable.
+- Benchmark: consists in a logistic regression with only the nature code (`Iva`) as independent variable.
 
 In evaluating classification models, both accuracy and the F1 score are indispensable. Accuracy provides a general overview of correctness, but in cases of class imbalance, it may be skewed by dominant classes. Meanwhile, the F1 score, by combining precision and recall, offers a balanced perspective, crucial for discerning the model's ability to correctly identify minority classes and minimize false positives/negatives. Together, these metrics ensure a comprehensive assessment, considering both overall correctness and the model's precision-recall balance.
 While comparing our models with the benchmark enables us to understand how effectively they capture complex relationships in the data, especially in contrast to simpler models.
@@ -182,17 +182,17 @@ This section discusses and compares the performance of different models to deter
 
 This bar chart compares the 6 models and the benchmark to evaluate which model has the highest accuracy and F1 score values. The result turned out as all the models’ metrics far outweigh the benchmark ones, demonstrating a significant improvement over standard performance expectation. As it is clear from the graph, the Random Forest model is the most performing one, exceeding other models in terms of both accuracy and F1 efficiency, respectively 96.63% and 96.59%, probably due its ability to handle a large variety of data features and its robustness against overfitting. However, also the other models performed really accurate prediction; indeed, the Logistic Regression which is the worst one, accomplishes an accuracy and an F1 Score slightly lower than the Random Forest ones. 
 
-In order to display how our best model classify each occurrency, it has been set up a confusion matrix. This graph, in addition to telling us how accurate the model is, gives an idea of "how" the model gets the prediction wrong and helps to understand whether the inaccuracies stem from systematic issues, outliers, or specific conditions within the data, enhancing training techniques to minimize these inaccuracies. 
+In order to display how our best model classify each occurrency, it has been set up a confusion matrix. A confusion matrix compares the predictions to the true classes. Elements on the diagonal of the matrix represent classes correctly predicted, while off-diagonal elements represent misclassified classes[^4].
 
 <div align="center">
-  <img src="images/conf_mtx.png" alt="">
+  <img src="images/conf_matrix.png" alt="">
 </div>
 
 <p align="right">
   <em><small>Figure 6</small></em>
 </p>
 
-The cells on the main diagonal represent the correct predictions. The confusion matrix shows that the model has a good ability to distinguish between the most common classes. Particularly, the model displays very high accuracy for class 22.0 (1772 correct predictions out of a total of 1781) and for class 315.0 (4126 correct predictions out of a total of 4211). Conversely, there are some classes like 374.0 that despite has a total of 5005 correct observations accounting for a good portion of the total, it also shows a misclassifications problem, with huge number of incorrect observations from class 300.0. This disparity showcases that lasses 374.0 and 300.0 may have similar features that confuse the model regarding similar variables or patterns in the input data, so when the model encounters an observation of class 374.0 that has characteristics in common with class 300.0 it may misclassify it as 300.0, negatively affecting the predictions. Despite that, the confusion matrix reveals that overall the model performs well for the majority of the classes.
+The confusion matrix shows that the model has a good ability to distinguish between the most common classes. Particularly, the model displays very high accuracy for class 22.0 (1772 correct predictions out of a total of 1781) and for class 315.0 (4126 correct predictions out of a total of 4211). Conversely, there are some classes like 374.0 that despite has a total of 5005 correct observations accounting for a good portion of the total, it also shows a misclassifications problem, with huge number of incorrect observations from class 300.0. This disparity showcases that lasses 374.0 and 300.0 may have similar features that confuse the model regarding similar variables or patterns in the input data, so when the model encounters an observation of class 374.0 that has characteristics in common with class 300.0 it may misclassify it as 300.0, negatively affecting the predictions. Despite that, the confusion matrix reveals that overall the model performs well for the majority of the classes.
 
 ## 5 - Conclusions 
 
