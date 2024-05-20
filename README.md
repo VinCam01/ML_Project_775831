@@ -5,15 +5,15 @@
 ## 1 - Introduction
 On 1 January 2019, the Italian government introduced legislation requiring that all invoices issued between parties in Italy must be transmitted exclusively in electronic format through the "*Sistema di Interscambio*" (SDI) of the Italian "*Agenzia delle Entrate*". To simplify this process, several dedicated portals and software can be used, including BIP xTech and TeamSystem. The latter are consistently engaged in the pursuit of novel technologies and methodologies with the objective of optimising the user experience. They espouse a customer-centric approach to innovation, whereby their designers integrate the needs of individuals, technological possibilities and requirements for business success.
 
-It is well established that certain invoice types are not subject to value-added tax and enjoy tax exemptions. The nature of these exemptions is coded using a nature code, which comprises 21 different values. Additionaly, users has to map the nature code to exemption code that represent the reason why the invoice is not subject to VAT. This task is complex and sophisticated due to the presence of 64 exemption codes, which necessitates that a nature code may correspond to more than one IvaM code. 
+It is well established that certain invoice types are not subject to value-added tax and enjoy tax exemptions. The nature of these exemptions is coded using a nature code, which comprises 21 different values. Additionaly, users has to map the nature code to exemption code that represents the reason why the invoice is not subject to VAT. This task is complex and sophisticated due to the presence of 64 exemption codes, which necessitates that a nature code may correspond to more than one IvaM code. 
 
-The objective of this project is to develop a machine learning model that is capable of predicting and suggesting the VAT exemption code (IvaM) to users based on the data on the invoice. This will enable the process to be streamlined. The following sections will engage in a comprehensive examination of the argument presented in this work.
+The objective of this project is to develop a machine learning model that is capable of predicting and suggesting the VAT exemption code (`IvaM`) to users based on the data on the invoice. This will enable the process to be streamlined. The following sections will engage in a comprehensive examination of the argument presented in this work.
 
 ## 2 - Methods
 The company provides us with a substantial dataset, comprising approximately 130,000 invoices, each characterized by 45 related features, including very useful informations like ATECO code, document type, invoice type, VAT rate, article description, amount and many more. 
 
 ### 2.1 - Data Preprocessing
-We started our analysis by visualizing the missing values in order to understand how they are distributed among the dataset:
+Our analysis started by visualizing the missing values in order to understand how they are distributed among the dataset:
 
 <div align="center">
   <img src="images/nan.png" alt="">
@@ -23,7 +23,7 @@ We started our analysis by visualizing the missing values in order to understand
   <em><small>Figure 1</small></em>
 </p>
 
-As we can see in *Figure 1*, in our dataset there were some columns with almost only null values, so we decided to drop the features that have more than 100,000 null values in order to maintain the integrity of the dataset. Subsequently, based on our knowledge, we dropped the features representing redundant information for the accomplishment of our goal, namely:
+As it is shown in *Figure 1*, in our dataset there were some columns with almost only null values, so the features with more than 100,000 null values have been dropped in order to maintain the integrity of the dataset. Subsequently, based on our knowledge, also the features representing redundant information for the accomplishment of our goal, have been excluded from our dataset. Namely:
 - `Unnamed: 0` represents an index.
 - `Descrizione Riga` describes the object of the transaction.
 - `DataDoc` is the date of the transaction.
@@ -31,14 +31,13 @@ As we can see in *Figure 1*, in our dataset there were some columns with almost 
 - `Conto`, `ContoStd` and `CoDitta` represent an internal mapping of the companies.
 - `Art1` provides similar informations to variable `Valore1`.
   
-In order to manage the remaining NaN values, we adopted two strategies. For every feature, except from `RF`, we filled null values with the most frequent class within the variable. Regarding the remain one, we filled null values with a new class, called 'ND'; we did it
-because previous strategy is not suitable for a feature with a huge number of NaN values (approximately 79.000). Indeed, in our opinion, computing the most frequent class based on less than half occurrences would have damaged data integrity. 
+In order to manage the remaining NaN values, two strategies have been adopted. For every feature, except from `RF`, null values were filled with the most frequent class within the variable. Regarding the remaining one, null values were filled with a new class, called 'ND'; since addressing null values with the previous strategy is not suitable for features with a large number of missing values (approximately 79.000). Indeed, in our opinion, computing the most frequent class based on less than half of the occurrences would have damaged data integrity. 
 
-Sequently, we focused on making features suitable for the prediction. 
-After an exploratory analysis, we understood that the distribution of the classess within the features was strongly unbalanced: there were a few classes with many observations and many classes with very few observations. 
-This is problematic because, in the case of the independent variables, encoding would create a large number of columns with nearly zero variance. Meanwhile, for the dependent variable, the model would struggle to learn how to classify invoices into exemption codes with very few observations. 
-To overcome this issue, we chose a threshold, below which all classes were grouped into a new class called 'OTHER'. 
-The definition of this threshold was based on the distribution of each specific variable, this is because generalizing it would have lost important information.
+Subsequently, features manipulation was needed in order to make them suitable for the prediction. 
+After an exploratory analysis, it was evidend that the distribution of the classes within the features was strongly unbalanced: there were a few classes with many observations and many classes with very few observations. 
+This is problematic because, in the case of the independent variables, the encoding would create a large number of columns with nearly zero variance. Meanwhile, for the dependent variable, the model would struggle to learn how to classify invoices into exemption codes with very few observations. 
+To overcome this issue, it has been chosen a threshold, below which all classes were grouped into a new class called 'OTHER'. 
+The definition of this threshold was based on the distribution of each specific variable, since by generalizing a lot of information would have been lost.
 
 <div align="center">
   <img src="images/iva_tdoc.png" alt="">
@@ -48,8 +47,9 @@ The definition of this threshold was based on the distribution of each specific 
   <em><small>Figure 2</small></em>
 </p>
 
-*Figure 2* shows, as an example, how  the distibutions of the variables `Iva` and `Tdoc` changed after that rebalancing of the classes.
-`Ateco` required some additional manipulations, indeed originally it was consisting in a huge number of classess, 386, unevenly distributed. This is because the ateco code divides commercial activities extremely precisely, so each class generally reports few observations.
+*Figure 2* shows, as an example, how  the distibutions of the variables `Iva` and `Tdoc` changed after the rebalancing of the classes.
+
+`Ateco` required some additional manipulations, indeed originally it was consisting of a huge number of classes, 386, unevenly distributed. 
 
 <div align="center">
   <img src="images/ateco.png" alt="">
@@ -59,8 +59,9 @@ The definition of this threshold was based on the distribution of each specific 
   <em><small>Figure 3</small></em>
 </p>
 
-To solve this, we mantained the first two digits, which represents tha macro-category of the commercial activity, of each occurrences. Subsequently, we defined a threshold of 1000, below which all classes were grouped into a new class called 'OTHER'.
-Lastly, regarding the response variable `IvaM`, we adopted a significantly lower threshold of 250, in comparison with the independent features, due to the fact that we wanted to keep an high sensitivity in the model. Indeed, an higher threshold would have meant fewer code-specific exemptions that the model is able to predict.
+To solve this, only the first two digits of each occurrence are taken into account, beacuse they represent tha macro-category of the commercial activity. Subsequently, threshold of 1000 was defined, below which all classes were grouped into a new class called 'OTHER'.
+
+Lastly, regarding the response variable `IvaM`, a lower threshold of 250 was adopted. The rationale behind the smaller size of the threshold in comparison to those employed for independent features is to ensure the maximum possible prediction of exemption codes. Indeed, an higher threshold would have meant fewer code-specific exemptions that the model is able to predict.
 
 <div align="center">
   <img src="images/ivam.png" alt="">
@@ -70,10 +71,10 @@ Lastly, regarding the response variable `IvaM`, we adopted a significantly lower
   <em><small>Figure 4</small></em>
 </p>
 
-Once the classes were balanced, we proceeded with the encoding of categorical variables, adopting binary encoding for the ones with two classes and one-hot-encoding for the remaining ones.
+Once the classes were balanced, to make the features adequate and be able to fit them in the model,was adopted binary encoding for the ones with two classes and one-hot-encoding for the remaining ones.
 
-Afterwords, we implemented the Cramer's V method to retain only the categorical variables that have a strong association with the response one. Indeed, this method is used to assess the association between two categorical variables, based on the chi-squared, it provides a value between 0 and 1 where 0 represents no association and 1 perfect association.
-After computing the metric, we defined a 0.25 threshold and for the features below it, we either included them in the class 'OTHER', if the variable was encoded, or dropped it otherwise.
+Afterwords, the Cramer's V method was implemented to retain only the categorical variables that have a strong association with the response. Indeed, this method, which is based on the chi-squared, is used to assess the association between two categorical variables by providing a value between 0 and 1: where 0 represents no association and 1 perfect association.
+After computing the metric, a 0.25 threshold was set and the features below it were either included in the class 'OTHER', if the variable was encoded, or dropped it otherwise.
 
 ### 2.2 - Models 
 In this section we will explore all the statistical and machine learning models that we attempted in order to find the best performing one regarding the accomplishment of our goal. 
