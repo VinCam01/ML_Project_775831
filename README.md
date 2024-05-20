@@ -156,13 +156,16 @@ Artificial neural networks is a popular machine learning technique inspired by t
 ## 3 - Experimental Design
 In this section, we present the experiments conducted to validate the effectiveness of our model for classifying exception codes.
 
-### 3.1 - Experiment 1
-The main purpose is to evaluate the performance of the proposed model’s performance based on two metrics.
+### 3.1 - Models Evaluation 
+The main purpose is to evaluate the performance of the proposed model’s performance based on two metrics and the comparison with the benchmark.
 - Accuracy: measures the model’s ability to correctly predict the class of an observation, it represents the ratio of correctly classified instances to the total number of instances in the dataset.
 - F1 score: provides a unique metric that include both the “precision” and “recall”. Precision measures the accuracy of positive predictions made by the model. It is calculated as the ratio of true positive predictions to the total number of positive predictions made by the model. Recall measures the model's ability to identify all relevant instances in the dataset. It is calculated as the ratio of true positive predictions to the total number of actual positive instances in the dataset.
+- Benchmark: consists in a logistic regression with only the nature code ('Iva') as independent variable.
 
 In evaluating classification models, both accuracy and the F1 score are indispensable. Accuracy provides a general overview of correctness, but in cases of class imbalance, it may be skewed by dominant classes. Meanwhile, the F1 score, by combining precision and recall, offers a balanced perspective, crucial for discerning the model's ability to correctly identify minority classes and minimize false positives/negatives. Together, these metrics ensure a comprehensive assessment, considering both overall correctness and the model's precision-recall balance, vital for real-world applicability.
-### 3.2 - Experiment 2
+While comparing our models with the benchmark enables us to understand how effectively they capture complex relationships in the data, especially in contrast to simpler models.
+
+### 3.2 - Models Comparison
 The main purpose is to compare the models based on the chosen metrics to find the most performant one and implement it as the final solution.
 
 ## 4 - Results
@@ -194,15 +197,6 @@ The confusion matrix shows that the model has a good ability to distinguish betw
 We note that the cells with the darkest shades of blue are on the diagonal, indicating that the model has good accuracy for these classes. Particularly, the model shows very high accuracy for class 22.0 (1772 correct predictions out of a total of 1781) and for class 315.0 (4126 correct predictions out of a total of 4211), showing that the model performs exceptionally well for this class. 
 Conversely, there are some classes like 374.0 that despite has a total of 5005 correct observations accounting for a good portion of the total, it shows also a misclassifications problem, with huge number of incorrect observations from class 300.0. This disparity showcase that lasses 374.0 and 300.0 may have similar features that confuse the model regarding  similar variables or patterns in the input data, so when the model encounters an observation of class 374.0 that has characteristics in common with class 300.0 it may misclassify it as 300.0, negatively affecting the predictions.
 Despite that, the confusion matrix reveals that overall the model performs well for the majority of the classes.
-
-### **4.1 Artificial Neural Network Results** 
-We have introduced an ANN model to learn from data and make predictions or decisions accurately and efficiently. For this particular model, we have added a third parameter, the mean loss, to evaluate its performance during training. The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data.
-
-- **Mean Accuracy for 5 folds**: 95.34%
-- **F1 Score**: 0.9511
-- **Mean loss is**: 0.1479
-
-The mean loss provides insight regarding how the model is minimizing errors between its predictions and the actual values in the training data. By monitoring and optimizing this, we aim to improve the model's ability.
 
 ## 5 - Conclusions 
 
