@@ -202,7 +202,10 @@ The confusion matrix shows that the model has a good ability to distinguish betw
   <em><small>Figure 7</small></em>
 </p>
 
-## 5 - Conclusions 
+## 5 - User Interface
+To make our model user-friendly for clients, a user interface was implemented. The Gradio library was used, along with the "Gradio Theme Builder" to enhance the layout. A crucial step was mapping the categorical variables so that when the user inputs data, the interface can identify the encoded variable and communicate it to the model to perform the prediction.
+
+## 6 - Conclusions 
 
 In conclusion, summarizing all the analysis process, the dataset was cleaned by handling NaN values, ensuring the integrity and reliability of our data, moving on developing various machine learning algorithms in order to evaluate how these models effectively predicted IvaM exemption codes. Through accuracy, F1 Score, and mean loss metrics, it was assessed the performance of each model and selected the most suitable one for predicting exemption codes. Finally, the results were interpreted to extract valuable insights and inform decision-making processes.
 
