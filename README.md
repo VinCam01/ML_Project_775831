@@ -77,28 +77,28 @@ Afterwords, the Cramer's V method was implemented to retain only the categorical
 After computing the metric, a 0.25 threshold was set and the features below it were either included in the class 'OTHER', if the variable was encoded, or dropped it otherwise.
 
 ### 2.2 - Models 
-In this section we will explore all the statistical and machine learning models that we attempted in order to find the best performing one regarding the accomplishment of our goal. 
-To asses the performance of our models, we adopted a 5 fold cross-validation, instead of a train-test split. 5 fold cross-validation is an algorithm that initially partitions the dataset into five equal-sized subsets or folds. The cross-validation process then iterates five times, each time utilizing a different fold as the validation set while the remaining four folds serve as the training data. This ensures that every data point is used for validation exactly once across the five iterations, thereby maximizing data utilization. During each iteration, the model is trained on the training folds and evaluated on the validation fold, yielding a performance metric. These performance metrics are recorded for each iteration. 
+This section analyzes all the statistical and machine learning models that were attempted in order to accomplish our goal. 
+To asses the performance of our models, a 5 fold cross-validation was adopted, instead of a train-test split. 5 fold cross-validation is an algorithm that initially partitions the dataset into five equal-sized subsets or folds. The cross-validation process then iterates five times, each time utilizing a different fold as the validation set while the remaining four folds serve as the training data. This ensures that every data point is used for validation exactly once across the five iterations, thereby maximizing data utilization. During each iteration, the model is trained on the training folds and evaluated on the validation fold, yielding a performance metric. These performance metrics are recorded for each iteration. 
 Subsequently, the average performance across all five iterations is computed to obtain a single, robust estimate of the model's performance. This approach not only reduces bias in performance estimates but also enhances the reliability and robustness of the model evaluation process. Furthermore, the use of multiple folds allows for a comprehensive comparison of different models or parameter settings, aiding in the selection of the most suitable model configuration for the given dataset.
-Additionally, where possible, Optuna hyperparameter tuning was employed to discover the best parameters. We opted for this optimizer due to its computational efficiency compared to Grid Search, and its superior performance relative to Random Search. Optuna leverages Bayesian optimization techniques to navigate the hyperparameter space efficiently, prioritizing hyperparameter sets that exhibit optimal performance throughout the search process. By incorporating historical performance data, Optuna enhances the likelihood of identifying optimal hyperparameters, contributing to improved model performance.
+Additionally, where possible, Optuna hyperparameter tuning was employed to discover the best parameters. This optimizer was chosen due to its computational efficiency compared to Grid Search, and its superior performance relative to Random Search. Optuna leverages Bayesian optimization techniques to navigate the hyperparameter space efficiently, prioritizing hyperparameter sets that exhibit optimal performance throughout the search process. By incorporating historical performance data, Optuna enhances the likelihood of identifying optimal hyperparameters, contributing to improved model performance.
 
 #### 2.2.1 - Logistic Regression
 The first model used is a Logistic Regression.
-Logistic regression is used to determine the probability of an event. Conventionally, the event is represented as a categorical dependent variable. The probability of the event is expressed using the sigmoid (or “logit”) function[^1]:
+Logistic regression determines the probability of an event. Conventionally, the event is represented as a categorical dependent variable. The probability of the event is expressed using the sigmoid (or “logit”) function[^1]:
 
 $$
 P(\hat{Y} = 1 \mid X = x) = \frac{1}{1 + e^{-(b + \mathbf{w}^T \mathbf{x})}}
 $$
 
-dove $\mathbf{w} = \{w_1, w_2, \ldots, w_n\}$ sono i pesi e $b$ è il termine di bias. Logistic regression is used in classification problems and the coefficients are estimated using either the maximum likelihood estimator or stochastic gradient descent. 
+where $\mathbf{w} = \{w_1, w_2, \ldots, w_n\}$ are the weights and $b$ is the bias term. Logistic regression is used in classification problems and the coefficients are estimated using either the maximum likelihood estimator or stochastic gradient descent. 
 
-As we will see in next sections, despite being the 'simplest' of the models used, the metrics are still very high.
+As the following section will display, despite being the 'simplest' of the models used, the metrics are still very high.
 
 [^1]:Kapoor, Amita, Antonio Gulli, and Sujit Pal. "Deep Learning with TensorFlow and Keras–3rd edition." Small (2017)
 
 #### 2.2.2 - Random Forest
-Secondly we implemented a Random Forest.
-Random forests is a statistical or machine-learning algorithm for prediction. Random decision forests easily adapt to nonlinearities found in the data and therefore tend to predict better than linear regression. More specifically, ensemble learning algorithms like random forests are well suited for medium to large datasets. The tree-based models form the building blocks of the random forest algorithm. A tree-based model involves recursively partitioning the given dataset into two groups based on a certain criterion until a predetermined stopping condition is met. At the bottom of decision trees are so-called leaf nodes or leaves[^2].
+Secondly a Random Forest was implemented.
+Random Forest is a statistical or machine-learning algorithm for prediction. Random decision forests easily adapt to nonlinearities found in the data and therefore tend to predict better than linear regression. More specifically, ensemble learning algorithms like random forests are well suited for medium to large datasets. The tree-based models form the building blocks of the random forest algorithm. A tree-based model involves recursively partitioning the given dataset into two groups based on a certain criterion until a predetermined stopping condition is met. At the bottom of decision trees are so-called leaf nodes or leaves[^2].
 
 **Hyperparameters**:
 - n_estimators: 117 -> number of trees in the forest.
@@ -109,8 +109,8 @@ Random forests is a statistical or machine-learning algorithm for prediction. Ra
 [^2]:Schonlau, Matthias, and Rosie Yuyan Zou. "The random forest algorithm for statistical learning." The Stata Journal 20.1 (2020)
 
 #### 2.2.3 - Decision Tree
-Then we used a Decision Tree. 
-Decision trees can be applied to both regression and classification problems. A decision tree is a classifier expressed as a recursive partition of the instance space. The decision tree consists of nodes that form a rooted tree, meaning it is a directed tree with a node called “root” that has no incoming edges. All other nodes have exactly one incoming edge. A node with outgoing edges is called an internal or test node. All other nodes are called leaves (also known as terminal or decision nodes). In a decision tree, each internal node splits the instance space into two or more sub-spaces according to a certain discrete function of the input attributes values. In the simplest and most frequent case, each test considers a single attribute, such that the instance space is partitioned according to the attribute’s value. Each leaf is assigned to one class representing the most appropriate target value[^3].
+Then a Decision Tree was attempted. 
+Decision trees can be applied to both regression and classification problems. A decision tree is a classifier expressed as a recursive partition of the instance space. The decision tree consists of nodes that form a rooted tree, meaning it is a directed tree with a node called “root” that has no incoming edges. All other nodes have exactly one incoming edge. A node with outgoing edges is called an internal or test node. All other nodes are called leaves, also known as terminal or decision nodes. In a decision tree, each internal node splits the instance space into two or more sub-spaces according to a certain discrete function of the input attributes values. In the simplest and most frequent case, each test considers a single attribute, such that the instance space is partitioned according to the attribute’s value. Each leaf is assigned to one class representing the most appropriate target value[^3].
 
 **Hyperparameters**:
 - 'max_depth': 42 -> maximum depth of the decision tree.
@@ -123,16 +123,16 @@ Decision trees can be applied to both regression and classification problems. A 
 #### 2.2.4 - Support Vector Machine
 Proceed our exploration implementing a Support Vector Machine.
 The support vector machine (SVM) is an extension of the support vector classifier that results from enlarging the feature space in a specific way, using kernels. They allow to enlarge feature space in order to accommodate a non-linear boundary between the classes[^4].
-In linear classification, SVM map input vector to a higher dimensional space where a maximal separating hyperplane is constructed. Two parallel hyperplanes are constructed on each side of the hyperplane that separate the data. The separating hyperplane is the hyperplane that maximize the distance between the two parallel hyperplanes. An assumption is made that the larger the margin or distance between these parallel hyperplanes the better the generalization error of the classifier will be. In the case we of nonlinear dividing line, rather than fitting nonlinear curves to the data, SVM handles this by using a kernel function to map the data into a different space where a hyperplane can be used to do the separation[^5].
+In linear classification, SVM map input vector to a higher dimensional space where a maximal separating hyperplane is constructed. Two parallel hyperplanes are constructed on each side of the hyperplane that separate the data. The separating hyperplane is the hyperplane that maximize the distance between the two parallel hyperplanes. An assumption is made that the larger the margin or distance between these parallel hyperplanes the better the generalization error of the classifier will be. In the case of nonlinear dividing line, rather than fitting nonlinear curves to the data, SVM handles this by using a kernel function to map the data into a different space where a hyperplane can be used to do the separation[^5].
 
-The implementation of this model took a long time, so carrying out hyperparameters tuning would have been computationally extremely time-consuming and inefficient since, as we shall see in the results section, the metrics are very good anyway.
+Since the implementation of this model took a considerable time, carrying out hyperparameters tuning would have been computationally extremely time-consuming and inefficient since, as is clear in the results section, the metrics are very good anyway.
 
 [^4]:James, Gareth, et al. An introduction to statistical learning. Vol. 112. New York: springer, 2013.
 [^5]:Bhavsar, Himani, and Mahesh H. Panchal. "A review on support vector machine for data classification." International Journal of Advanced Research in Computer Engineering & Technology (IJARCET) 1.10 (2012): 185-189.
 
 #### 2.2.5 - K-Nearest Neighbors
-Then we performed a KNN model.
-Nearest neighbors classification, also known KNN, is based on the idea that the nearest patterns to a target pattern $x$ , for which we seek the label, deliver useful label information. KNN assigns the class label of the majority of the K-nearest patterns in data space. For this sake, we have to be able to define a similarity measure in data space. In ℝ, it is reasonable to employ the Euclidean distance. The choice of $K$ defines the locality of KNN. For $K = 1$, little neighbor- hoods arise in regions, where patterns from different classes are scattered. For larger neighborhood sizes, e.g. $K = 20$, patterns with labels in the minority are ignored[^6].
+Then a KNN model was performed.
+Nearest neighbors classification, also known KNN, is based on the idea that the nearest patterns to a target pattern $x$ , for which we seek the label, deliver useful label information. KNN assigns the class label of the majority of the K-nearest patterns in data space. For this sake, we have to be able to define a similarity measure in data space. In the set of real numbers ℝ, it is reasonable to employ the Euclidean distance. The choice of $K$ defines the locality of KNN. For $K = 1$, little neighborhoods arise in regions, where patterns from different classes are scattered. For larger neighborhood sizes, e.g. $K = 20$, patterns with labels in the minority are ignored[^6].
 
 **Hyperparameters**:
 - 'n_neighbors': 14 -> number of neighbors considered during classification
@@ -143,7 +143,7 @@ Nearest neighbors classification, also known KNN, is based on the idea that the 
 [^6]:Peterson, Leif E. "K-nearest neighbor." Scholarpedia 4.2 (2009): 1883.
 
 #### 2.2.6 - Artificial Neural Network
-Lastly, we implemented an ANN.
+Lastly, an ANN was implemented.
 Artificial neural networks is a popular machine learning technique inspired by the biological neural network in the human brain. Feed forward neural networks are a common type of ANN which sends the weight values of each artificial neuron as output to the next layer after processing with inputs from neurons in the previous layer. An important class of feed forward neural network is Multilayer Perceptron (MLP). The back propagation algorithm is the most widely used MLP training technique. This changes the weights between neurons to minimize the error. This model is quite good in learning patterns. It can easily adapt to new values in the data, but the system can show a slow convergence and has the risk of a local optimum. The training data set was used to determine ANN neuron and bias weight values. Training was repeated to obtain the lowest level of error by changing the number of neurons and the epoch number. Then, the trained algorithm was applied on the test data set[^7].
 
 **Parameters**:
@@ -155,15 +155,15 @@ Artificial neural networks is a popular machine learning technique inspired by t
 [^7]:Saritas, Mucahid Mustafa, and Ali Yasar. "Performance analysis of ANN and Naive Bayes classification algorithm for data classification." International journal of intelligent systems and applications in engineering 7.2 (2019): 88-91.
 
 ## 3 - Experimental Design
-In this section, we present the experiments conducted to validate the effectiveness of our model for classifying exception codes.
+In this section, the experiments conducted to validate the effectiveness of our model for classifying exception codes are presented.
 
 ### 3.1 - Models Evaluation 
-The main purpose is to evaluate the performance of the proposed model’s performance based on two metrics and the comparison with the benchmark.
+The main purpose is to evaluate the performance of the proposed models based on two metrics and on the comparison with the benchmark.
 - Accuracy: measures the model’s ability to correctly predict the class of an observation, it represents the ratio of correctly classified instances to the total number of instances in the dataset.
 - F1 score: provides a unique metric that include both the “precision” and “recall”. Precision measures the accuracy of positive predictions made by the model. It is calculated as the ratio of true positive predictions to the total number of positive predictions made by the model. Recall measures the model's ability to identify all relevant instances in the dataset. It is calculated as the ratio of true positive predictions to the total number of actual positive instances in the dataset.
 - Benchmark: consists in a logistic regression with only the nature code ('Iva') as independent variable.
 
-In evaluating classification models, both accuracy and the F1 score are indispensable. Accuracy provides a general overview of correctness, but in cases of class imbalance, it may be skewed by dominant classes. Meanwhile, the F1 score, by combining precision and recall, offers a balanced perspective, crucial for discerning the model's ability to correctly identify minority classes and minimize false positives/negatives. Together, these metrics ensure a comprehensive assessment, considering both overall correctness and the model's precision-recall balance, vital for real-world applicability.
+In evaluating classification models, both accuracy and the F1 score are indispensable. Accuracy provides a general overview of correctness, but in cases of class imbalance, it may be skewed by dominant classes. Meanwhile, the F1 score, by combining precision and recall, offers a balanced perspective, crucial for discerning the model's ability to correctly identify minority classes and minimize false positives/negatives. Together, these metrics ensure a comprehensive assessment, considering both overall correctness and the model's precision-recall balance.
 While comparing our models with the benchmark enables us to understand how effectively they capture complex relationships in the data, especially in contrast to simpler models.
 
 ### 3.2 - Models Comparison
